@@ -1,42 +1,27 @@
-const shouldLogWebSocket = !window.location.href.includes("nin0.dev");
+import { setupListeners } from "./domListeners";
+import { shouldLogWebSocket } from "./utils";
 
-// #region listeners
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector("#guest-join-field button").addEventListener("click", function () {});
+let ws;
 
-    const messageSendBox = document.querySelector("#input-bar textarea");
-    messageSendBox.style.height = messageSendBox.scrollHeight + "px";
-    //messageSendBox.style.overflowY = "hidden";
-    messageSendBox.addEventListener(
-        "input",
-        (a) => {
-            messageSendBox.style.height = "auto";
-            messageSendBox.style.height = messageSendBox.scrollHeight + "px";
-        },
-        false
+export function initWebSocket() {
+    ws = new WebSocket(
+        window.location.href.includes("nin0.dev") ? "wss://chatws.nin0.dev" : "ws://localhost:8080"
     );
-});
-// #endregion
 
-const ws = new WebSocket(
-    window.location.href.includes("nin0.dev") ? "wss://chatws.nin0.dev" : "ws://localhost:8080"
-);
+    ws!.onopen = function () {
+        shouldLogWebSocket && console.log("Connected to ws");
+    };
 
-// #region utilities
-function addMessage(message) {
+    ws!.onmessage = function (event) {
+        shouldLogWebSocket && console.log("Message received: ", JSON.parse(event.data));
+    };
+}
+
+setupListeners();
+
+export function addMessage(message) {
     const messageContainer = document.createElement("div");
     messageContainer.classList.add("message");
     messageContainer.innerHTML = message;
-    document.querySelector("#messages").appendChild(messageContainer);
+    document.querySelector("#messages")!.appendChild(messageContainer);
 }
-// #endregion
-
-// #region ws listeners
-ws.onopen = function () {
-    shouldLogWebSocket && console.log("Connected to ws");
-};
-
-ws.onmessage = function (event) {
-    shouldLogWebSocket && console.log("Message received: ", JSON.parse(event.data));
-};
-// #endregion

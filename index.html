@@ -6,7 +6,10 @@
         <title>nin0chat</title>
         <link rel="stylesheet" href="/css/global.css" />
         <link rel="stylesheet" href="/css/index.css" />
-        <script src="src/index.ts"></script>
+        <script lang="ts" type="module">
+            import { addMessage, initWebSocket } from "./src/index";
+            initWebSocket();
+        </script>
     </head>
     <body>
         <div id="app-bar">
