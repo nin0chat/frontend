@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>nin0chat</title>
+        <link rel="stylesheet" href="/css/global.css" />
+        <link rel="stylesheet" href="/css/index.css" />
+        <script src="src/index.ts"></script>
+    </head>
+    <body>
+        <div id="app-bar">
+            <a href="/" id="title">
+                <p>nin0chat</p>
+            </a>
+            <p id="tagline">
+                the chat app of all time. straight to the point, easily accessible, open and
+                lightweight.
+            </p>
+        </div>
+        <div id="buttons-row">
+            <button>login</button>
+            <button>sign up</button>
+            <button>documentation</button>
+            <button>privacy/clear my data</button>
+        </div>
+        <div id="information">
+            <h3>how to join</h3>
+            <p>
+                if you're simply taking a look, you can quickly join by entering a username and
+                connecting! if you'd like to control your username, make bots, or gain more
+                permissions, you can also create an account.
+            </p>
+            <h3>rules</h3>
+            <p>
+                they're quite simple: use common sense. filters exist, do not bypass them.
+                <br />
+                ratelimits also exist, so do not spam. you cannot use guest/user accounts as bots.
+                you have to register them on the dev portal.
+            </p>
+            <h3>join as guest</h3>
+            <p id="guest-limitations">
+                note: guests are not allowed to send links, attach files or send messages bigger
+                than 300 characters. make an account to lift these limits.
+            </p>
+            <div id="guest-join-field">
+                <input type="text" id="username" placeholder="username" />
+                <button id="join">join</button>
+            </div>
+        </div>
+        <div id="content"></div>
+        <div id="input-bar">
+            <textarea placeholder="type a message..."></textarea>
+        </div>
+    </body>
+</html>
