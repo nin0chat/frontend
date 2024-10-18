@@ -1,11 +1,13 @@
 import { setupListeners } from "./domListeners";
+import { makeError } from "./errors";
 import { Message, Role, shouldLogWebSocket } from "./utils";
 import { Converter } from "showdown";
 
-export let ws: WebSocket | null = null;
+export let ws: WebSocket;
 const mdConverter = new Converter();
 mdConverter.setOption("strikethrough", true);
 mdConverter.setOption("simpleLineBreaks", true);
+mdConverter.setOption("simplifiedAutoLink", true);
 
 export function initWebSocket() {
     ws = new WebSocket(
@@ -20,6 +22,10 @@ export function initWebSocket() {
         const data = JSON.parse(event.data);
         shouldLogWebSocket && console.log("Message received: ", JSON.parse(event.data));
         switch (data.op) {
+            case -1: {
+                makeError(JSON.parse(event.data).d.message);
+                break;
+            }
             case 0: {
                 addMessage(data.d);
                 break;
@@ -28,6 +34,8 @@ export function initWebSocket() {
                 const infoBox = document.querySelector("#information") as HTMLElement;
                 infoBox.innerText = `Connected as ${data.d.username} (guest), refresh to disconnect.`;
                 infoBox.style.fontWeight = "bold";
+                (document.querySelector("#input-bar") as HTMLDivElement)!.style.visibility =
+                    "visible";
             }
         }
     };
@@ -51,9 +59,11 @@ export function addMessage(message: Message) {
         usernameTag.textContent = "";
         messageContainer.classList.add("system-msg");
     }
-    contentTag.innerHTML = mdConverter.makeHtml(
-        message.content.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    );
+    contentTag.innerHTML = mdConverter
+        .makeHtml(message.content.replace(/</g, "&lt;").replace(/>/g, "&gt;"))
+        .replace("<p>", "")
+        .replace("</p>", "");
+    contentTag.style.margin = "0 !important";
     document.querySelector("#content")!.appendChild(messageContainer);
     document
         .querySelector("#content")!

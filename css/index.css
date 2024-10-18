@@ -96,12 +96,28 @@
 }
 /* #endregion */
 /* #region input bar */
+#input-bar {
+    visibility: hidden;
+}
 #input-bar textarea {
     flex: 1;
     margin: 10px;
     max-height: 150px;
 }
+#input-bar #send {
+    margin-right: 10px !important;
+    margin: 10px 0;
+    padding: 0 10px;
+}
 
 .message {
     margin: 6px 0;
+}
+.system-msg {
+    padding: 12px 10px !important;
+}
+#error {
+    display: none;
+    padding: 10px 17px;
+    background-color: var(--error-container-color);
 }
