@@ -1,3 +1,7 @@
+/*all*/
+* {
+    font-family: "Inter", sans-serif;
+}
 /* #region app bar and friends */
 #tagline {
     margin-top: 5px;
@@ -63,7 +67,7 @@
 #content {
     flex: 1;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     overflow-y: auto;
     padding: 10px;
 }
@@ -96,4 +100,8 @@
     flex: 1;
     margin: 10px;
     max-height: 150px;
+}
+
+.message {
+    margin: 6px 0;
 }

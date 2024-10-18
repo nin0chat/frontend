@@ -1,0 +1,20 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.system-msg {
+    background-color: var(--container-color);
+    padding: 2px 15px;
+    border-radius: 7px;
+}
+.message {
+    margin: 6px 0;
+}
