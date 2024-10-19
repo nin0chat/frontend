@@ -116,6 +116,19 @@
 .system-msg {
     padding: 12px 10px !important;
 }
+/* #region tags */
+:root {
+    --tag-guest-color: #cccccc;
+}
+.tag {
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+.tag-guest {
+    background-color: var(--tag-guest-color);
+}
+/* #endregion */
 #error {
     display: none;
     padding: 10px 17px;
