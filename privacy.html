@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>login - nin0chat</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+        <script lang="ts" type="module">
+            import { configButtonsRow } from "./src/global";
+            import { setupListeners } from "./src/auth/login";
+            import "./css/signup.css";
+            import "./css/global.css";
+
+            configButtonsRow();
+            setupListeners();
+        </script>
+    </head>
+    <body>
+        <div id="app-bar">
+            <a href="/" id="title">
+                <p>◄ privacy</p>
+            </a>
+            <p id="tagline">see what data nin0chat collects and uses</p>
+        </div>
+        <div id="content">
+            This privacy policy applies to the nin0chat website and any clients connecting to
+            nin0chat. If you never login as a guest or user, absolutely no data is collected on you.
+            We only use your data when strictly necessary; it is neither shared nor sold. Last
+            updated on 10/20/2024.
+            <h2>What do we store</h2>
+            If you register anonymously (guest):
+            <ul>
+                <li>IP address, kept for security and anti-abuse purposes</li>
+            </ul>
+            <br />
+            If you do make an account:
+            <ul>
+                <li>IP address, kept for security and anti-abuse purposes</li>
+                <li>The email and username that were provided</li>
+                <li>A one-way hash of the password you gave us</li>
+            </ul>
+            <br />
+            If you send a message:
+            <ul>
+                <li>The message content</li>
+                <li>The time the message was sent</li>
+            </ul>
+            <h2>How do we use collected information</h2>
+            We only use it for strictly necessary purposes, which are basic functions of the
+            nin0chat server and anti-abuse purposes if needed. Your data will never be sold or
+            shared to any third-parties, unless absolutely required to do so by law. (if you see
+            this message, no data has been shared with any third-party since nin0chat's creation)
+            <h2>Data retention</h2>
+            We keep your data for as long as you have an account.
+            <br />
+            If you want your data to be deleted, email
+            <a href="mailto:privacy@nin0.dev">privacy@nin0.dev</a> from the account email. If you
+            did not make an account, state the used IP address.
+            <h2>Changes to this policy</h2>
+            If we do any changes to the privacy policy, a notice will be shown 60 days before the
+            changes are effective and 30 days after they are. The last update date will also always
+            be present.
+        </div>
+    </body>
+</html>
