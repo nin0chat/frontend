@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>login - nin0chat</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+        <script lang="ts" type="module">
+            import { setupListeners } from "./src/editProfile";
+            import "./css/signup.css";
+            import "./css/global.css";
+
+            setupListeners();
+        </script>
+    </head>
+    <body>
+        <div id="app-bar">
+            <a href="/" id="title">
+                <p>◄ edit profile</p>
+            </a>
+            <p id="tagline">change your profile info</p>
+        </div>
+        <div id="content">
+            <p><strong>any fields left alone will not be changed</strong></p>
+            <form>
+                <label for="email">username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="still max 30 characters"
+                    autocomplete="username"
+                />
+                <label for="email">password</label>
+                <input
+                    type="password"
+                    name="old-password"
+                    placeholder="old password"
+                    autocomplete="password"
+                />
+                <input
+                    type="password"
+                    name="new-password"
+                    placeholder="new password"
+                    autocomplete="password"
+                />
+            </form>
+            <button id="ok">submit</button>
+            <p id="ok-txt">changes saved successfully!</p>
+        </div>
+        <div id="error">
+            <p></p>
+        </div>
+    </body>
+</html>
