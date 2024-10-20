@@ -119,6 +119,9 @@
 /* #region tags */
 :root {
     --tag-guest-color: #cccccc;
+    --tag-dark-text-color: #ffffff;
+    --tag-mod-color: #00a50c;
+    --tag-admin-color: #ff0000;
 }
 .tag {
     font-weight: 600;
@@ -127,5 +130,16 @@
 }
 .tag-guest {
     background-color: var(--tag-guest-color);
+}
+.tag-mod {
+    background-color: var(--tag-mod-color);
+    color: var(--tag-dark-text-color);
+}
+.tag-admin {
+    background-color: var(--tag-admin-color);
+    color: var(--tag-dark-text-color);
+}
+.timestamp {
+    color: gray;
 }
 /* #endregion */

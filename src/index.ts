@@ -74,14 +74,17 @@ export function addMessage(message: Message) {
     const messageContainer = document.createElement("div");
     messageContainer.classList.add("message");
     messageContainer.innerHTML = `
-        <span class="tag"></span> <span class="username"></span> <span class="content"></span>
+        <span class="tag"></span> <span class="username"></span> <span class="timestamp"></span> <span class="content"></span>
     `;
     const contentContainer: HTMLElement = document.querySelector("#content")!;
     let shouldRescroll = false;
     const usernameTag: HTMLElement = messageContainer.querySelector(".username")!;
     const contentTag: HTMLElement = messageContainer.querySelector(".content")!;
+    const timestampTag: HTMLElement = messageContainer.querySelector(".timestamp")!;
     const tagTag: HTMLElement = messageContainer.querySelector(".tag")!;
     usernameTag.textContent = `<${message.userInfo.username}>`;
+    timestampTag.textContent =
+        new Date(message.timestamp).getHours() + ":" + new Date(message.timestamp).getMinutes();
     usernameTag.style.fontWeight = "600";
     if (message.userInfo.roles & Role.System) {
         usernameTag.textContent = "";
@@ -90,6 +93,16 @@ export function addMessage(message: Message) {
     if (message.userInfo.roles & Role.Guest) {
         tagTag.textContent = "Guest";
         tagTag.classList.add("tag-guest");
+    }
+    if (message.userInfo.roles & Role.Mod) {
+        tagTag.textContent = "Mod";
+        usernameTag.style.color = "var(--tag-mod-color)";
+        tagTag.classList.add("tag-mod");
+    }
+    if (message.userInfo.roles & Role.Admin) {
+        tagTag.textContent = "Admin";
+        usernameTag.style.color = "var(--tag-admin-color)";
+        tagTag.classList.add("tag-admin");
     }
     if (!tagTag.textContent) tagTag.remove();
     contentTag.innerHTML = mdConverter
