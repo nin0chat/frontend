@@ -104,6 +104,11 @@ export function addMessage(message: Message) {
         usernameTag.style.color = "var(--tag-admin-color)";
         tagTag.classList.add("tag-admin");
     }
+    if (message.userInfo.roles & Role.Bot) {
+        tagTag.textContent = "Bot";
+        usernameTag.style.color = "var(--tag-bot-color)";
+        tagTag.classList.add("tag-bot");
+    }
     if (!tagTag.textContent) tagTag.remove();
     contentTag.innerHTML = mdConverter
         .makeHtml(message.content.replace(/</g, "&lt;").replace(/>/g, "&gt;"))

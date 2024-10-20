@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>bots - nin0chat</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+        <script lang="ts" type="module">
+            import "./css/signup.css";
+            import "./css/global.css";
+
+            import { setupListeners } from "./src/devPortal";
+            setupListeners();
+        </script>
+    </head>
+    <body>
+        <div id="app-bar">
+            <a href="/" id="title">
+                <p>◄ bots</p>
+            </a>
+            <p id="tagline">create and manage nin0chat bots</p>
+        </div>
+        <div id="content">
+            <h3>new bot</h3>
+            <form>
+                <label for="email">username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="still max 30 characters"
+                    autocomplete="username"
+                />
+            </form>
+            <button id="ok">create</button>
+            <div id="error">
+                <p></p>
+            </div>
+            <p id="ok-txt">signed up successfully, check your email to activate your account!</p>
+            <h3>your bots</h3>
+        </div>
+    </body>
+</html>

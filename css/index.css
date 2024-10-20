@@ -122,6 +122,7 @@
     --tag-dark-text-color: #ffffff;
     --tag-mod-color: #00a50c;
     --tag-admin-color: #ff0000;
+    --tag-bot-color: #0000ff;
 }
 .tag {
     font-weight: 600;
@@ -137,6 +138,10 @@
 }
 .tag-admin {
     background-color: var(--tag-admin-color);
+    color: var(--tag-dark-text-color);
+}
+.tag-bot {
+    background-color: var(--tag-bot-color);
     color: var(--tag-dark-text-color);
 }
 .timestamp {
