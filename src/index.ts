@@ -64,6 +64,13 @@ export function initWebSocket() {
 setupListeners();
 
 export function addMessage(message: Message) {
+    if (
+        message.userInfo.roles & Role.System &&
+        token &&
+        message.content ===
+            "Welcome to nin0chat! You are currently connected as an unauthenticated guest and cannot talk until you either login (unless you're already logged in?) or set your username."
+    )
+        return;
     const messageContainer = document.createElement("div");
     messageContainer.classList.add("message");
     messageContainer.innerHTML = `
