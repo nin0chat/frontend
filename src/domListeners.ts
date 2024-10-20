@@ -9,11 +9,19 @@ export function setupListeners() {
             (
                 document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement
             ).dataset.href = "";
+
             (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).onclick =
                 () => {
                     localStorage.removeItem("nin0chat-token");
                     window.location.href = "/";
                 };
+
+            (document.querySelectorAll("#buttons-row button")[1] as HTMLButtonElement).innerText =
+                "dev portal";
+
+            (
+                document.querySelectorAll("#buttons-row button")[1] as HTMLButtonElement
+            ).dataset.href = "/devPortal.html";
             (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).innerText =
                 "logout";
         }
@@ -26,7 +34,8 @@ export function setupListeners() {
                         anon: true,
                         username: (
                             document.querySelector("#guest-join-field input") as HTMLInputElement
-                        ).value
+                        ).value,
+                        device: "web"
                     }
                 })
             );

@@ -18,7 +18,7 @@ export function initWebSocket() {
     ws!.onopen = function () {
         shouldLogWebSocket && console.log("Connected to ws");
         if (token) {
-            ws.send(JSON.stringify({ op: 1, d: { token, anon: false } }));
+            ws.send(JSON.stringify({ op: 1, d: { token, anon: false, device: "web" } }));
         }
     };
 
