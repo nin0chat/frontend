@@ -56,6 +56,12 @@ export function initWebSocket() {
             }
             case 2: {
                 ws.send(JSON.stringify({ op: 2, d: {} }));
+                break;
+            }
+            case 3: {
+                data.d.history.forEach((message: any) => {
+                    addMessage(message);
+                });
             }
         }
     };
