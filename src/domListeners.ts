@@ -1,9 +1,23 @@
 import { addMessage, ws } from ".";
+import { token } from "./global";
 import { sendMessage } from "./messageCreation";
 import { Message, Role } from "./utils";
 
 export function setupListeners() {
     document.addEventListener("DOMContentLoaded", function () {
+        if (token) {
+            (
+                document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement
+            ).dataset.href = "";
+            (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).onclick =
+                () => {
+                    localStorage.removeItem("nin0chat-token");
+                    window.location.href = "/";
+                };
+            (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).innerText =
+                "logout";
+        }
+
         document.querySelector("#guest-join-field button")!.addEventListener("click", function () {
             ws!.send(
                 JSON.stringify({

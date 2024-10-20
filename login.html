@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>login - nin0chat</title>
+        <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+        <script lang="ts" type="module">
+            import { configButtonsRow } from "./src/global";
+            import { setupListeners } from "./src/auth/login";
+            import "./css/signup.css";
+            import "./css/global.css";
+
+            configButtonsRow();
+            setupListeners();
+        </script>
+    </head>
+    <body>
+        <div id="app-bar">
+            <a href="/" id="title">
+                <p>login</p>
+            </a>
+            <p id="tagline">sign in to your nin0chat account</p>
+        </div>
+        <div id="content">
+            <form>
+                <label for="email">email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="a thing that looks like an email"
+                    autocomplete="email"
+                />
+                <label for="password">password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="the password of all time"
+                    autocomplete="new-password"
+                />
+            </form>
+            <button disabled id="ok">login</button>
+        </div>
+        <div id="error">
+            <p></p>
+        </div>
+    </body>
+</html>

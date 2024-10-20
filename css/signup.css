@@ -1,0 +1,27 @@
+label,
+input {
+    display: block;
+}
+label {
+    margin-bottom: 7px;
+}
+input {
+    margin: 10px 0px;
+    width: 289px;
+}
+.cf-turnstile {
+    margin-top: 20px;
+}
+button {
+    margin-top: 10px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#ok-txt {
+    color: darkgreen;
+    display: none;
+}

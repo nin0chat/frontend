@@ -1,5 +1,6 @@
 import { setupListeners } from "./domListeners";
 import { makeError } from "./errors";
+import { token } from "./global";
 import { Message, Role, shouldLogWebSocket } from "./utils";
 import { Converter } from "showdown";
 
@@ -16,6 +17,13 @@ export function initWebSocket() {
 
     ws!.onopen = function () {
         shouldLogWebSocket && console.log("Connected to ws");
+        if (token) {
+            ws.send(JSON.stringify({ op: 1, d: { token, anon: false } }));
+        }
+    };
+
+    ws!.onclose = function () {
+        window.location.reload();
     };
 
     ws!.onmessage = function (event) {
@@ -32,10 +40,22 @@ export function initWebSocket() {
             }
             case 1: {
                 const infoBox = document.querySelector("#information") as HTMLElement;
-                infoBox.innerText = `Connected as ${data.d.username} (guest), refresh to disconnect.`;
+                infoBox.innerText = `Connected as ${data.d.username}${
+                    data.d.roles & Role.Guest
+                        ? " (guest), refresh to disconnect."
+                        : ". <a href='pfthing'>Edit profile</a>"
+                }`;
+                infoBox.innerHTML = infoBox.innerHTML.replace(
+                    "&lt;a href='pfthing'&gt;Edit profile&lt;/a&gt;",
+                    '<a href="/editProfile.html">Edit profile</a>'
+                );
                 infoBox.style.fontWeight = "bold";
                 (document.querySelector("#input-bar") as HTMLDivElement)!.style.visibility =
                     "visible";
+                break;
+            }
+            case 2: {
+                ws.send(JSON.stringify({ op: 2, d: {} }));
             }
         }
     };

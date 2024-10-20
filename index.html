@@ -7,11 +7,13 @@
         <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
         <script lang="ts" type="module">
             import { addMessage, initWebSocket } from "./src/index";
+            import { configButtonsRow } from "./src/global";
             import "./css/index.css";
             import "./css/global.css";
             import "./css/messages.css";
 
             initWebSocket();
+            configButtonsRow();
         </script>
         <link
             rel="stylesheet"
@@ -29,8 +31,8 @@
             </p>
         </div>
         <div id="buttons-row">
-            <button>login</button>
-            <button>sign up</button>
+            <button data-href="/login.html">login</button>
+            <button data-href="/signup.html">sign up</button>
             <button>documentation</button>
             <button>privacy/clear my data</button>
         </div>

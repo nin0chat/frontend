@@ -1,3 +1,9 @@
+* {
+    font-family: "Inter", sans-serif;
+}
+#content {
+    padding: 10px;
+}
 /* #region things */
 body,
 html {
@@ -32,6 +38,11 @@ button:hover {
 button:active {
     box-shadow: 1px 1px 2px var(--text-color);
 }
+button:disabled {
+    filter: grayscale(1);
+    opacity: 0.7;
+    pointer-events: none;
+}
 input,
 textarea {
     font-family: sans-serif;
@@ -46,3 +57,70 @@ textarea:focus {
     border: 2px var(--hovered-container-color) solid;
 }
 /* #endregion */
+
+/* #region app bar and friends */
+#tagline {
+    margin-top: 5px;
+}
+#app-bar {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 17px;
+    font-size: 1.2rem;
+    align-items: center;
+    background-color: var(--container-color);
+}
+#app-bar #title {
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+}
+#app-bar #title:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+#app-bar p {
+    margin: 0;
+    display: inline;
+}
+/* #region buttons row */
+#buttons-row {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    flex-wrap: wrap;
+}
+
+#buttons-row a,
+#buttons-row button {
+    flex: 1 1 23%;
+    margin: 5px;
+}
+
+#buttons-row a button:hover,
+#buttons-row button:hover {
+    background-color: var(--hovered-container-color);
+    font-weight: bold;
+    border: 1px var(--text-color) solid;
+    color: var(--hovered-text-color);
+}
+#buttons-row a button:active,
+#buttons-row button:active {
+    box-shadow: 1px 1px 2px var(--text-color);
+}
+
+@media (pointer: none), (pointer: coarse) {
+    #buttons-row button,
+    #buttons-row a {
+        flex: 1 1 45%;
+    }
+}
+#error {
+    display: none;
+    padding: 10px 17px;
+    background-color: var(--error-container-color);
+}
+#content {
+    flex: 1;
+}
