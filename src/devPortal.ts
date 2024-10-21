@@ -7,7 +7,7 @@ export function setupListeners() {
             "click",
             async (e) => {
                 const response = await fetch(
-                    debug ? "http://127.0.0.1:3000/api/bots" : "/api/bots",
+                    debug ? "http://127.0.0.1:3000/api/bots" : "https://chatapi.nin0.dev/api/bots",
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -34,12 +34,15 @@ export function setupListeners() {
             }
         );
         try {
-            const response = await fetch(debug ? "http://127.0.0.1:3000/api/bots" : "/api/bots", {
-                method: "GET",
-                headers: {
-                    ...(token ? { Authorization: token } : {})
+            const response = await fetch(
+                debug ? "http://127.0.0.1:3000/api/bots" : "https://chatapi.nin0.dev/api/bots",
+                {
+                    method: "GET",
+                    headers: {
+                        ...(token ? { Authorization: token } : {})
+                    }
                 }
-            });
+            );
             const data = await response.json();
             const content = document.querySelector("#content") as HTMLElement;
             data.bots.forEach((bot: { username: string; id: string }) => {
@@ -52,7 +55,9 @@ export function setupListeners() {
                 deleteLink.addEventListener("click", async (e) => {
                     e.preventDefault();
                     const deleteResponse = await fetch(
-                        debug ? `http://127.0.0.1:3000/api/bots` : `/api/bots`,
+                        debug
+                            ? `http://127.0.0.1:3000/api/bots`
+                            : `https://chatapi.nin0.dev/api/bots`,
                         {
                             method: "DELETE",
                             body: JSON.stringify({
