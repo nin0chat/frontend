@@ -12,7 +12,7 @@ mdConverter.setOption("simplifiedAutoLink", true);
 
 export function initWebSocket() {
     ws = new WebSocket(
-        window.location.href.includes("nin0.dev") ? "wss://chatws.nin0.dev" : "ws://localhost:8080"
+        window.location.href.includes("nin0.dev") ? "wss://chatws.nin0.dev" : "ws://localhost:8928"
     );
 
     ws!.onopen = function () {
@@ -23,7 +23,8 @@ export function initWebSocket() {
     };
 
     ws!.onclose = function () {
-        window.location.reload();
+        makeError("Disconnected from Gateway, reloading in a few seconds...");
+        setTimeout(window.location.reload, 2000);
     };
 
     ws!.onmessage = function (event) {
@@ -114,6 +115,14 @@ export function addMessage(message: Message) {
         tagTag.textContent = "Bot";
         usernameTag.style.color = "var(--tag-bot-color)";
         tagTag.classList.add("tag-bot");
+    }
+    if (message.type === 4) {
+        tagTag.textContent = "Bridge";
+        tagTag.classList.add("tag-bridge");
+        tagTag.title = `Bridged by ${message.userInfo.bridgeMetadata?.from}`;
+        if (message.userInfo.bridgeMetadata?.color !== "0") {
+            usernameTag.style.color = `#${message.userInfo.bridgeMetadata?.color}`;
+        }
     }
     if (!tagTag.textContent) tagTag.remove();
     contentTag.innerHTML = mdConverter

@@ -123,6 +123,7 @@
     --tag-mod-color: #00a50c;
     --tag-admin-color: #ff0000;
     --tag-bot-color: #0000ff;
+    --tag-bridge-color: #7289da;
 }
 .tag {
     font-weight: 600;
@@ -142,6 +143,10 @@
 }
 .tag-bot {
     background-color: var(--tag-bot-color);
+    color: var(--tag-dark-text-color);
+}
+.tag-bridge {
+    background-color: var(--tag-bridge-color);
     color: var(--tag-dark-text-color);
 }
 .timestamp {
