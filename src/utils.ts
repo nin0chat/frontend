@@ -14,8 +14,13 @@ export type Message = {
         id: string;
         username: string;
         roles: number;
+        bridgeMetadata?: {
+            from: string;
+            color: string;
+        };
     };
     id: string;
     content: string;
     timestamp: number;
+    type: number;
 };

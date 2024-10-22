@@ -38,7 +38,7 @@ export function setupListeners() {
             async (e) => {
                 const response = await fetch(
                     debug
-                        ? "http://127.0.0.1:3000/api/auth/signup"
+                        ? "http://127.0.0.1:5174/api/auth/signup"
                         : "https://chatapi.nin0.dev/api/auth/signup",
                     {
                         method: "POST",

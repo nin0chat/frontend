@@ -7,7 +7,7 @@ export function setupListeners() {
             "click",
             async (e) => {
                 const response = await fetch(
-                    debug ? "http://127.0.0.1:3000/api/bots" : "https://chatapi.nin0.dev/api/bots",
+                    debug ? "http://127.0.0.1:5174/api/bots" : "https://chatapi.nin0.dev/api/bots",
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -35,7 +35,7 @@ export function setupListeners() {
         );
         try {
             const response = await fetch(
-                debug ? "http://127.0.0.1:3000/api/bots" : "https://chatapi.nin0.dev/api/bots",
+                debug ? "http://127.0.0.1:5174/api/bots" : "https://chatapi.nin0.dev/api/bots",
                 {
                     method: "GET",
                     headers: {
@@ -56,7 +56,7 @@ export function setupListeners() {
                     e.preventDefault();
                     const deleteResponse = await fetch(
                         debug
-                            ? `http://127.0.0.1:3000/api/bots`
+                            ? `http://127.0.0.1:5174/api/bots`
                             : `https://chatapi.nin0.dev/api/bots`,
                         {
                             method: "DELETE",

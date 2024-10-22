@@ -9,7 +9,7 @@ export function setupListeners() {
                 (document.querySelector("#ok-txt") as HTMLParagraphElement).style.display = "none";
                 const response = await fetch(
                     debug
-                        ? "http://127.0.0.1:3000/api/user/update"
+                        ? "http://127.0.0.1:5174/api/user/update"
                         : "https://chatapi.nin0.dev/api/user/update",
                     {
                         method: "PATCH",
