@@ -7,22 +7,24 @@ export function setupListeners() {
     document.addEventListener("DOMContentLoaded", function () {
         if (token) {
             (
-                document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement
+                document.querySelectorAll("#buttons-row a button")[0] as HTMLButtonElement
             ).dataset.href = "";
 
-            (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).onclick =
+            (document.querySelectorAll("#buttons-row a button")[0] as HTMLButtonElement).onclick =
                 () => {
                     localStorage.removeItem("nin0chat-token");
                     window.location.href = "/";
                 };
-
-            (document.querySelectorAll("#buttons-row button")[1] as HTMLButtonElement).innerText =
+            (document.querySelectorAll("#buttons-row a")[0] as HTMLLinkElement).href = "";
+            (document.querySelectorAll("#buttons-row a button")[1] as HTMLButtonElement).innerText =
                 "dev portal";
 
             (
-                document.querySelectorAll("#buttons-row button")[1] as HTMLButtonElement
+                document.querySelectorAll("#buttons-row a button")[1] as HTMLButtonElement
             ).dataset.href = "/devPortal.html";
-            (document.querySelectorAll("#buttons-row button")[0] as HTMLButtonElement).innerText =
+            (document.querySelectorAll("#buttons-row a")[1] as HTMLLinkElement).href =
+                "/devPortal.html";
+            (document.querySelectorAll("#buttons-row a button")[0] as HTMLButtonElement).innerText =
                 "logout";
         }
 
