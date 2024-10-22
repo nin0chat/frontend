@@ -40,6 +40,7 @@ export function initWebSocket() {
                 break;
             }
             case 1: {
+                document.querySelector("#tagline").style.display = "none";
                 const infoBox = document.querySelector("#information") as HTMLElement;
                 infoBox.innerText = `Connected as ${data.d.username}${
                     data.d.roles & Role.Guest
