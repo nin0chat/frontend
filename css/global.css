@@ -15,6 +15,7 @@ html {
     font-family: sans-serif;
 }
 :root {
+    --background-color: #fff;
     --text-color: #000;
     --hovered-text-color: #fff;
     --link-color: #3f3cff;

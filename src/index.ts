@@ -44,13 +44,35 @@ export function initWebSocket() {
                 infoBox.innerText = `Connected as ${data.d.username}${
                     data.d.roles & Role.Guest
                         ? " (guest), refresh to disconnect."
-                        : ". <a href='pfthing'>Edit profile</a>"
+                        : ". <a href='pfthing'>Edit profile</a><a id='members-chat-link'> • View members</a>"
                 }`;
                 infoBox.innerHTML = infoBox.innerHTML.replace(
                     "&lt;a href='pfthing'&gt;Edit profile&lt;/a&gt;",
                     '<a href="/editProfile.html">Edit profile</a>'
                 );
+                infoBox.innerHTML = infoBox.innerHTML.replace(
+                    "&lt;a id='members-chat-link'&gt; • View members&lt;/a&gt;",
+                    '<a id="members-chat-link" href="#"> • View members</a>'
+                );
                 infoBox.style.fontWeight = "bold";
+                const membersLink = (document.querySelector(
+                    "#members-chat-link"
+                ) as HTMLLinkElement)!;
+                membersLink.addEventListener("click", () => {
+                    if (membersLink.innerText.includes("chat")) {
+                        document.querySelector("#members")?.classList.add("still-hide");
+                        document.querySelector("#content")?.classList.add("still-show");
+                        document.querySelector("#members")?.classList.remove("still-show");
+                        document.querySelector("#content")?.classList.remove("still-hide");
+                        membersLink.innerText = " • View members";
+                    } else {
+                        document.querySelector("#members")?.classList.add("still-show");
+                        document.querySelector("#content")?.classList.add("still-hide");
+                        document.querySelector("#members")?.classList.remove("still-hide");
+                        document.querySelector("#content")?.classList.remove("still-show");
+                        membersLink.innerText = " • View chat";
+                    }
+                });
                 (document.querySelector("#input-bar") as HTMLDivElement)!.style.visibility =
                     "visible";
                 break;
@@ -62,6 +84,26 @@ export function initWebSocket() {
             case 3: {
                 data.d.history.forEach((message: any) => {
                     addMessage(message);
+                });
+                break;
+            }
+            case 4: {
+                const membersItem = document.querySelector("#members") as HTMLDivElement;
+                membersItem.innerHTML = "";
+                const membersHeading = document.createElement("strong");
+                membersHeading.innerText = `members (${data.d.users.length})`;
+                membersItem.appendChild(membersHeading);
+                data.d.users.forEach((user) => {
+                    const memberItem = document.createElement("p");
+                    memberItem.innerText = user.username;
+                    if (user.roles & Role.Guest) memberItem.style.color = "#666666";
+                    if (user.roles & Role.Mod) memberItem.style.color = "var(--tag-mod-color)";
+                    if (user.roles & Role.Admin) memberItem.style.color = "var(--tag-admin-color)";
+                    if (user.roles & Role.Bot) memberItem.style.color = "var(--tag-bot-color)";
+                    memberItem.addEventListener("click", () => {
+                        navigator.clipboard.writeText(user.id);
+                    });
+                    membersItem.appendChild(memberItem);
                 });
             }
         }
