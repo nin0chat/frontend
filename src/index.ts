@@ -56,24 +56,26 @@ export function initWebSocket() {
                     '<a id="members-chat-link" href="#"> • View members</a>'
                 );
                 infoBox.style.fontWeight = "bold";
-                const membersLink = (document.querySelector(
-                    "#members-chat-link"
-                ) as HTMLLinkElement)!;
-                membersLink.addEventListener("click", () => {
-                    if (membersLink.innerText.includes("chat")) {
-                        document.querySelector("#members")?.classList.add("still-hide");
-                        document.querySelector("#content")?.classList.add("still-show");
-                        document.querySelector("#members")?.classList.remove("still-show");
-                        document.querySelector("#content")?.classList.remove("still-hide");
-                        membersLink.innerText = " • View members";
-                    } else {
-                        document.querySelector("#members")?.classList.add("still-show");
-                        document.querySelector("#content")?.classList.add("still-hide");
-                        document.querySelector("#members")?.classList.remove("still-hide");
-                        document.querySelector("#content")?.classList.remove("still-show");
-                        membersLink.innerText = " • View chat";
-                    }
-                });
+                try {
+                    const membersLink = (document.querySelector(
+                        "#members-chat-link"
+                    ) as HTMLLinkElement)!;
+                    membersLink.addEventListener("click", () => {
+                        if (membersLink.innerText.includes("chat")) {
+                            document.querySelector("#members")?.classList.add("still-hide");
+                            document.querySelector("#content")?.classList.add("still-show");
+                            document.querySelector("#members")?.classList.remove("still-show");
+                            document.querySelector("#content")?.classList.remove("still-hide");
+                            membersLink.innerText = " • View members";
+                        } else {
+                            document.querySelector("#members")?.classList.add("still-show");
+                            document.querySelector("#content")?.classList.add("still-hide");
+                            document.querySelector("#members")?.classList.remove("still-hide");
+                            document.querySelector("#content")?.classList.remove("still-show");
+                            membersLink.innerText = " • View chat";
+                        }
+                    });
+                } catch {}
                 (document.querySelector("#input-bar") as HTMLDivElement)!.style.visibility =
                     "visible";
                 break;
