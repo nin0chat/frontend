@@ -1,6 +1,6 @@
 import { setupListeners } from "./domListeners";
 import { makeError } from "./errors";
-import { token } from "./global";
+import { token, gatewayURL } from "./global";
 import { Message, Role, shouldLogWebSocket } from "./utils";
 import { Converter } from "showdown";
 
@@ -11,9 +11,7 @@ mdConverter.setOption("simpleLineBreaks", true);
 mdConverter.setOption("simplifiedAutoLink", true);
 
 export function initWebSocket() {
-    ws = new WebSocket(
-        window.location.href.includes("nin0.dev") ? "wss://chatws.nin0.dev" : "ws://localhost:8928"
-    );
+    ws = new WebSocket(gatewayURL);
 
     ws!.onopen = function () {
         shouldLogWebSocket && console.log("Connected to ws");

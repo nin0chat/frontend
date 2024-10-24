@@ -1,4 +1,4 @@
-import { debug } from "../global";
+import { gatewayURL, setToken } from "../global";
 import { makeError } from "../errors";
 
 function checkIfWeShouldUnlockTheLoginButton() {
@@ -21,9 +21,7 @@ export function setupListeners() {
             "click",
             async (e) => {
                 const response = await fetch(
-                    debug
-                        ? "http://127.0.0.1:5174/api/auth/login"
-                        : "https://chatapi.nin0.dev/api/auth/login",
+					`${gatewayURL}/api/auth/login`,
                     {
                         method: "POST",
                         body: JSON.stringify({
@@ -41,7 +39,7 @@ export function setupListeners() {
                 );
                 const responseJson = await response.json();
                 if (response.status === 200) {
-                    localStorage.setItem("nin0chat-token", responseJson.token);
+                    setToken(responseJson.token)
                     window.location.href = "/";
                 } else {
                     makeError(responseJson.error || "An error occurred, please try again later.");

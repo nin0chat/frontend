@@ -1,5 +1,5 @@
 import { addMessage, ws } from ".";
-import { token } from "./global";
+import { token, setToken } from "./global";
 import { sendMessage } from "./messageCreation";
 import { Message, Role } from "./utils";
 
@@ -12,7 +12,7 @@ export function setupListeners() {
 
             (document.querySelectorAll("#buttons-row a button")[0] as HTMLButtonElement).onclick =
                 () => {
-                    localStorage.removeItem("nin0chat-token");
+					setToken(null);
                     window.location.href = "/";
                 };
             (document.querySelectorAll("#buttons-row a")[0] as HTMLLinkElement).href = "";
