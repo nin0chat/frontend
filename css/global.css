@@ -4,6 +4,75 @@
 #content {
     padding: 10px;
 }
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #333;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #555;
+        border-radius: 6px;
+    }
+    body {
+        background-color: #202020;
+        color: white;
+    }
+    a {
+        color: #aaaaff;
+    }
+    input,
+    textarea {
+        background-color: #101010;
+        color: white;
+    }
+    button {
+        background-color: #222234 !important;
+        color: white !important;
+        border-color: #606060 !important;
+    }
+    button:hover {
+        border-color: white !important;
+    }
+    .system-msg {
+        background-color: #303030 !important;
+    }
+    #app-bar {
+        background-color: #222234 !important;
+        * {
+            color: white !important;
+        }
+    }
+    #error {
+        background-color: #aa0000 !important;
+        p {
+            color: white !important;
+        }
+    }
+    #ok-txt {
+        color: lightgreen !important;
+    }
+    strong {
+        background-color: #00000000 !important;
+    }
+
+    :root {
+        --tag-bot-color: #aaaaff;
+        --tag-mod-color: #aaffaa;
+    }
+
+    .tag-admin {
+        color: white;
+    }
+    .tag-bot,
+    .tag-mod {
+        color: black;
+    }
+}
 /* #region things */
 body,
 html {
