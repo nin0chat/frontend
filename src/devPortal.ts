@@ -25,7 +25,7 @@ export function setupListeners() {
                 if (response.status === 200) {
                     (
                         document.querySelector("#ok-txt") as HTMLElement
-                    ).textContent = `Bot created! The token is ${responseJson.token}, do not share it.`;
+                    ).textContent = `App created! The token is ${responseJson.token}, do not share it.`;
                     (document.querySelector("#ok-txt") as HTMLButtonElement).style.display =
                         "block";
                 } else {
@@ -75,7 +75,7 @@ export function setupListeners() {
                         const deleteResponseJson = await deleteResponse.json();
                         makeError(
                             deleteResponseJson.error ||
-                                "Failed to delete bot, please try again later."
+                                "Failed to delete app, please try again later."
                         );
                     }
                 });
