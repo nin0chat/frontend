@@ -162,6 +162,7 @@ export function addMessage(message: Message) {
         tagTag.classList.add("tag-bot");
     }
     if (message.type === 4) {
+        // @ts-ignore
         tagTag.textContent = message.userInfo.bridgeMetadata?.from;
         tagTag.classList.add("tag-bridge");
         tagTag.title = `Bridged by ${message.userInfo.bridgeMetadata?.from}`;
