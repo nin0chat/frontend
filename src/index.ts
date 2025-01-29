@@ -157,12 +157,12 @@ export function addMessage(message: Message) {
         tagTag.classList.add("tag-admin");
     }
     if (message.userInfo.roles & Role.Bot) {
-        tagTag.textContent = "Bot";
+        tagTag.textContent = "App";
         usernameTag.style.color = "var(--tag-bot-color)";
         tagTag.classList.add("tag-bot");
     }
     if (message.type === 4) {
-        tagTag.textContent = "Bridge";
+        tagTag.textContent = message.userInfo.bridgeMetadata?.from;
         tagTag.classList.add("tag-bridge");
         tagTag.title = `Bridged by ${message.userInfo.bridgeMetadata?.from}`;
         if (message.userInfo.bridgeMetadata?.color !== "0") {
